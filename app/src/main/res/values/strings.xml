@@ -11,4 +11,10 @@
     <string name="device_card_owner">Dueño</string>
     <string name="device_card_status">Conectado</string>
 
+
+    <string name="user_card_title">Titulo</string>
+    <string name="user_card_status">Activo</string>
+    <string name="user_card_job">Puesto</string>
+    <string name="user_card_department">Departamento</string>
+
 </resources>

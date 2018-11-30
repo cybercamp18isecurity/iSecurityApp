@@ -7,39 +7,39 @@ import android.view.ViewGroup
 import com.telefonica.lucferbux.captainamerica.recyclerview.DefaultViewHolder
 import com.telefonica.lucferbux.isecurityapp.R
 import com.telefonica.lucferbux.isecurityapp.extension.listen
-import com.telefonica.lucferbux.isecurityapp.model.DeviceInfo
+import com.telefonica.lucferbux.isecurityapp.model.UserInfo
 import com.telefonica.lucferbux.isecurityapp.model.StatusType
 
 /**
- * Adapter for the DeviceList
+ * Adapter for the UserList
  *
- * This class is the adapter for the recycler view of the devices, takes an arraylist of devices and it can short them, delete them and some sort of functions
+ * This class is the adapter for the recycler view of the users, takes an arraylist of users and it can short them, delete them and some sort of functions
  * Code example modified from -> https://www.raywenderlich.com/272-intermediate-recyclerview-tutorial-with-kotlin
  *
- * @property devicesList list of Device.
+ * @property usersList list of user.
  * @receiver RecyclerView.Adapter Adapter of the viewholder
  */
-class DeviceListAdapter (private var devicesList: ArrayList<DeviceInfo>, val rowClick: (Int) -> Unit): RecyclerView.Adapter<DefaultViewHolder>() {
+class UserListAdapter (private var usersList: ArrayList<UserInfo>, val rowClick: (Int) -> Unit): RecyclerView.Adapter<DefaultViewHolder>() {
 
-    // filter to hold the result devices
-    private var filteredDevices = ArrayList<DeviceInfo>()
+    // filter to hold the result users
+    private var filteredUsers = ArrayList<UserInfo>()
     private var filtering = false
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DefaultViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return DefaultViewHolder(layoutInflater.inflate(R.layout.card_device, parent, false)).listen {
-            pos, type ->
-                rowClick(pos)
+        return DefaultViewHolder(layoutInflater.inflate(R.layout.card_user, parent, false)).listen {
+                pos, type ->
+            rowClick(pos)
         }
     }
 
 
     override fun getItemCount(): Int {
         if(filtering) {
-            return filteredDevices.size
+            return filteredUsers.size
         }
-        return devicesList.size
+        return usersList.size
     }
 
     /**
@@ -47,25 +47,25 @@ class DeviceListAdapter (private var devicesList: ArrayList<DeviceInfo>, val row
      */
     private fun clearFilter() {
         filtering = false
-        filteredDevices.clear()
+        filteredUsers.clear()
     }
 
     /**
      * Update the list calculating the difference between memebers
-     * @param devices New list of devices
+     * @param users New list of users
      */
-    fun updateDevices(devices: ArrayList<DeviceInfo>) {
-        DiffUtil.calculateDiff(DeviceRowDiffCallback(devices, devicesList), false).dispatchUpdatesTo(this)
-        devicesList = devices
+    fun updateusers(users: ArrayList<UserInfo>) {
+        DiffUtil.calculateDiff(userRowDiffCallback(users, usersList), false).dispatchUpdatesTo(this)
+        usersList = users
         clearFilter()
     }
 
     /**
-     * Getter of deviceList adapter
-     * @return Arraylist of devices
+     * Getter of userList adapter
+     * @return Arraylist of users
      */
-    fun getListAdapter(): ArrayList<DeviceInfo> {
-        return devicesList
+    fun getListAdapter(): ArrayList<UserInfo> {
+        return usersList
     }
 
     /**
@@ -74,25 +74,25 @@ class DeviceListAdapter (private var devicesList: ArrayList<DeviceInfo>, val row
      */
     fun removeRow(row: Int) {
         if (filtering) {
-            filteredDevices.removeAt(row)
+            filteredUsers.removeAt(row)
         } else {
-            devicesList.removeAt(row)
+            usersList.removeAt(row)
         }
         notifyItemRemoved(row) //notifiy data changed with info about recyclerview
     }
 
     /**
-     * Filter current devices based of a parameter
+     * Filter current users based of a parameter
      * @param status parameter to filter
      */
-    fun filterDevices(status: StatusType) {
+    fun filterusers(status: StatusType) {
         filtering = true
-        val newDevices = devicesList.filter { device ->
-            device.status!!.equals(status)
-        } as ArrayList<DeviceInfo>
+        val newusers = usersList.filter { user ->
+            user.status!!.equals(status)
+        } as ArrayList<UserInfo>
 
-        DiffUtil.calculateDiff(DeviceRowDiffCallback(newDevices, devicesList), false).dispatchUpdatesTo(this)
-        filteredDevices = newDevices
+        DiffUtil.calculateDiff(userRowDiffCallback(newusers, usersList), false).dispatchUpdatesTo(this)
+        filteredUsers = newusers
     }
 
 
@@ -104,37 +104,38 @@ class DeviceListAdapter (private var devicesList: ArrayList<DeviceInfo>, val row
         }*/
 
     override fun onBindViewHolder(holder: DefaultViewHolder, position: Int) {
-        val deviceRow: DeviceInfo = if (filtering) {
-            filteredDevices[position]
+        val userRow: UserInfo = if (filtering) {
+            filteredUsers[position]
         } else {
-            devicesList[position]
+            usersList[position]
         }
 
-        deviceRow?.hostname?.let { holder.setText(R.id.device_card_title, it) }
-        deviceRow?.owner?.let { holder.setText(R.id.device_card_owner, it) }
-        deviceRow?.status?.let {
-            holder.setText(R.id.device_card_status, getStatus(deviceRow))
+        userRow.name.let { holder.setText(R.id.user_card_title, it) }
+        userRow.position?.let { holder.setText(R.id.user_card_job, it) }
+        userRow.status?.let {
+            holder.setText(R.id.user_card_status, getStatus(userRow))
             val color = getColor(it)
-            holder.setColorText(R.id.device_card_status, color)
-            holder.setColorImage(R.id.device_card_dot, color)
+            holder.setColorText(R.id.user_card_status, color)
+            holder.setColorImage(R.id.user_card_dot, color)
         }
-        deviceRow?.avatar_url?.let { holder.setAvatarImage(R.id.device_card_img, it) }
+        userRow.image_url?.let { holder.setAvatarImage(R.id.user_card_img, it) }
+        userRow.department?.let { holder.setText(R.id.user_card_department, it) }
     }
 
     /**
-     * Get current status of a device
-     * @param device to check the status
+     * Get current status of a user
+     * @param user to check the status
      * @return String with the current status
      */
-    fun getStatus(device: DeviceInfo): String {
-        return when (device.status!!) {
-            StatusType.ONLINE -> "Online"
-            StatusType.OFFLINE -> device.timestamp?.let { "Ult. conx ${it}" } ?: "Not found"
+    fun getStatus(user: UserInfo): String {
+        return when (user.status!!) {
+            StatusType.ONLINE -> "Activo"
+            StatusType.OFFLINE -> user.timestamp?.let { "Ult. conx ${it}" } ?: "Not found"
         }
     }
 
     /**
-     * Get current color of the device
+     * Get current color of the user
      * @param status to check
      * @return Id of color
      */
@@ -145,8 +146,6 @@ class DeviceListAdapter (private var devicesList: ArrayList<DeviceInfo>, val row
         }
     }
 
-
-
     /**
      * Callback to check items in list
      *
@@ -155,7 +154,7 @@ class DeviceListAdapter (private var devicesList: ArrayList<DeviceInfo>, val row
      * @property oldRows list with old Rows
      * @return Callback with the result list
      */
-    class DeviceRowDiffCallback(private val newRows : List<DeviceInfo>, private val oldRows : List<DeviceInfo>) : DiffUtil.Callback() {
+    class userRowDiffCallback(private val newRows : List<UserInfo>, private val oldRows : List<UserInfo>) : DiffUtil.Callback() {
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
             val oldRow = oldRows[oldItemPosition]
             val newRow = newRows[newItemPosition]

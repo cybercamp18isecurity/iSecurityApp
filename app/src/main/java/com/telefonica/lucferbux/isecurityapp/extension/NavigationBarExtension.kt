@@ -1,16 +1,17 @@
 package com.telefonica.lucferbux.isecurityapp.extension
 
-import android.app.Activity
 import android.content.Context
 import android.support.v4.app.Fragment
 import com.luseen.spacenavigation.SpaceItem
 import com.luseen.spacenavigation.SpaceNavigationView
 import com.luseen.spacenavigation.SpaceOnClickListener
 import com.telefonica.lucferbux.isecurityapp.R
-import com.telefonica.lucferbux.isecurityapp.controller.*
-import com.telefonica.lucferbux.isecurityapp.controller.MainActivity.Companion.DEVICES_TEST
-import com.telefonica.lucferbux.isecurityapp.controller.MainActivity.Companion.DOMAIN_TEST
-import com.telefonica.lucferbux.isecurityapp.controller.MainActivity.Companion.USERS_TEST
+import com.telefonica.lucferbux.isecurityapp.controller.Activities.DashboardActivity
+import com.telefonica.lucferbux.isecurityapp.controller.Activities.MainActivity
+import com.telefonica.lucferbux.isecurityapp.controller.Fragments.AlertsFragment
+import com.telefonica.lucferbux.isecurityapp.controller.Fragments.DevicesFragment
+import com.telefonica.lucferbux.isecurityapp.controller.Fragments.DomainsFragment
+import com.telefonica.lucferbux.isecurityapp.controller.Fragments.UsersFragment
 import com.telefonica.lucferbux.isecurityapp.model.NavigationFragment
 import org.jetbrains.anko.startActivity
 

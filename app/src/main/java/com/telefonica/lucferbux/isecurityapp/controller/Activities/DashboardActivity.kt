@@ -1,4 +1,4 @@
-package com.telefonica.lucferbux.isecurityapp.controller
+package com.telefonica.lucferbux.isecurityapp.controller.Activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle

@@ -1,4 +1,4 @@
-package com.telefonica.lucferbux.isecurityapp.controller
+package com.telefonica.lucferbux.isecurityapp.controller.Fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -9,6 +9,7 @@ import android.view.ViewGroup
 
 import com.telefonica.lucferbux.isecurityapp.R
 import com.telefonica.lucferbux.isecurityapp.adapters.DeviceListAdapter
+import com.telefonica.lucferbux.isecurityapp.controller.Activities.DeviceDetailActivity
 import com.telefonica.lucferbux.isecurityapp.extension.DEVICE_DETAIL
 import com.telefonica.lucferbux.isecurityapp.model.DeviceInfo
 import com.telefonica.lucferbux.isecurityapp.model.DeviceInfoList
@@ -39,10 +40,7 @@ class DevicesFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_devices, container, false)
     }
 

@@ -1,4 +1,4 @@
-package com.telefonica.lucferbux.isecurityapp.controller
+package com.telefonica.lucferbux.isecurityapp.controller.Activities
 
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
@@ -8,26 +8,27 @@ import android.view.KeyEvent
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.telefonica.lucferbux.isecurityapp.R
-import com.telefonica.lucferbux.isecurityapp.extension.DEVICE_DETAIL
-import com.telefonica.lucferbux.isecurityapp.model.DeviceInfo
-import kotlinx.android.synthetic.main.activity_device_detail.*
+import com.telefonica.lucferbux.isecurityapp.extension.USER_DETAIL
+import com.telefonica.lucferbux.isecurityapp.model.UserInfo
+
+import kotlinx.android.synthetic.main.activity_user_detail.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
 
-class DeviceDetailActivity : AppCompatActivity() {
+class UserDetailActivity : AppCompatActivity() {
 
-    private val device: DeviceInfo by lazy {
-        intent.getSerializableExtra(DEVICE_DETAIL) as DeviceInfo
+    private val user: UserInfo by lazy {
+        intent.getSerializableExtra(USER_DETAIL) as UserInfo
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_device_detail)
+        setContentView(R.layout.activity_user_detail)
 
         btn_close.onClick {
             closeActivity()
         }
 
-        setDeviceInfo(device)
+        setuserInfo(user)
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
@@ -37,17 +38,16 @@ class DeviceDetailActivity : AppCompatActivity() {
         return super.onKeyDown(keyCode, event)
     }
 
-    fun setDeviceInfo(device: DeviceInfo) {
-        device_title.text = device.hostname
-        device_owner.text = device.owner
+    fun setuserInfo(user: UserInfo) {
+        user_title.text = user.name
+        user_device.text = user.device
         Glide.with(this)
-            .load(Uri.parse(device.avatar_url))
+            .load(Uri.parse(user.image_url))
             .apply(RequestOptions.circleCropTransform())
-            .into(device_avatar)
+            .into(user_avatar)
     }
 
     fun closeActivity() {
         finish()
     }
-
 }
