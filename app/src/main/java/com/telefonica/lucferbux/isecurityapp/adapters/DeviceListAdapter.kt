@@ -88,7 +88,7 @@ class DeviceListAdapter (private var devicesList: ArrayList<DeviceInfo>, val row
     fun filterDevices(status: StatusType) {
         filtering = true
         val newDevices = devicesList.filter { device ->
-            device.status.equals(status)
+            device.status!!.equals(status)
         } as ArrayList<DeviceInfo>
 
         DiffUtil.calculateDiff(DeviceRowDiffCallback(newDevices, devicesList), false).dispatchUpdatesTo(this)
@@ -127,9 +127,9 @@ class DeviceListAdapter (private var devicesList: ArrayList<DeviceInfo>, val row
      * @return String with the current status
      */
     fun getStatus(device: DeviceInfo): String {
-        return when (device.status) {
+        return when (device.status!!) {
             StatusType.ONLINE -> "Online"
-            StatusType.OFFLINE -> device.lastConnection?.let { "Ult. conx ${it}" } ?: "Not found"
+            StatusType.OFFLINE -> device.timestamp?.let { "Ult. conx ${it}" } ?: "Not found"
         }
     }
 

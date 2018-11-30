@@ -5,7 +5,7 @@ import java.io.Serializable
 data class DomainInfo(
     val timestamp: Number?,
     val url: String,
-    val ip: Number?,
+    val ip: String?,
     val domain: String?,
     val description: String?,
     val owner: String?,
