@@ -11,6 +11,7 @@ import com.telefonica.lucferbux.isecurityapp.controller.*
 import com.telefonica.lucferbux.isecurityapp.controller.MainActivity.Companion.DEVICES_TEST
 import com.telefonica.lucferbux.isecurityapp.controller.MainActivity.Companion.DOMAIN_TEST
 import com.telefonica.lucferbux.isecurityapp.controller.MainActivity.Companion.USERS_TEST
+import com.telefonica.lucferbux.isecurityapp.model.NavigationFragment
 import org.jetbrains.anko.startActivity
 
 
@@ -32,23 +33,28 @@ fun MainActivity.setNavigationLinks(navigationBar: SpaceNavigationView, context:
         override fun onItemClick(itemIndex: Int, itemName: String?) {
             val fragment: Fragment = when (itemIndex) {
                 0 -> {
-                    DevicesFragment.newInstance(DEVICES_TEST)
+                    fragmentStatus = NavigationFragment.DEVICES
+                    DevicesFragment.newInstance(deviceList!!)
                 }
 
                 1 -> {
-                    UsersFragment.newInstance(USERS_TEST)
+                    fragmentStatus = NavigationFragment.USERS
+                    UsersFragment.newInstance(usersList!!)
                 }
 
                 2 -> {
-                    DomainsFragment.newInstance(DOMAIN_TEST)
+                    fragmentStatus = NavigationFragment.DOMAINS
+                    DomainsFragment.newInstance(domainList!!)
                 }
 
                 3 -> {
+                    fragmentStatus = NavigationFragment.ALERTS
                     AlertsFragment.newInstance("alerts")
                 }
 
                 else -> {
-                    DevicesFragment.newInstance(DEVICES_TEST)
+                    fragmentStatus = NavigationFragment.DEVICES
+                    DevicesFragment.newInstance(deviceList!!)
                 }
             }
 

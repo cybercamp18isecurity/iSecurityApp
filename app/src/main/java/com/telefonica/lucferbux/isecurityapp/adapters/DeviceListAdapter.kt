@@ -3,10 +3,10 @@ package com.telefonica.lucferbux.isecurityapp.adapters
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import com.telefonica.lucferbux.captainamerica.recyclerview.DefaultViewHolder
 import com.telefonica.lucferbux.isecurityapp.R
+import com.telefonica.lucferbux.isecurityapp.extension.listen
 import com.telefonica.lucferbux.isecurityapp.model.DeviceInfo
 import com.telefonica.lucferbux.isecurityapp.model.StatusType
 
@@ -19,7 +19,7 @@ import com.telefonica.lucferbux.isecurityapp.model.StatusType
  * @property devicesList list of Device.
  * @receiver RecyclerView.Adapter Adapter of the viewholder
  */
-class DeviceListAdapter (private var devicesList: ArrayList<DeviceInfo>): RecyclerView.Adapter<DefaultViewHolder>() {
+class DeviceListAdapter (private var devicesList: ArrayList<DeviceInfo>, val rowClick: (Int) -> Unit): RecyclerView.Adapter<DefaultViewHolder>() {
 
     // filter to hold the result devices
     private var filteredDevices = ArrayList<DeviceInfo>()
@@ -28,7 +28,10 @@ class DeviceListAdapter (private var devicesList: ArrayList<DeviceInfo>): Recycl
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DefaultViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return DefaultViewHolder(layoutInflater.inflate(R.layout.card_device, parent, false))
+        return DefaultViewHolder(layoutInflater.inflate(R.layout.card_device, parent, false)).listen {
+            pos, type ->
+                rowClick(pos)
+        }
     }
 
 
@@ -85,7 +88,7 @@ class DeviceListAdapter (private var devicesList: ArrayList<DeviceInfo>): Recycl
     fun filterDevices(status: StatusType) {
         filtering = true
         val newDevices = devicesList.filter { device ->
-            device.statusType.equals(status)
+            device.status.equals(status)
         } as ArrayList<DeviceInfo>
 
         DiffUtil.calculateDiff(DeviceRowDiffCallback(newDevices, devicesList), false).dispatchUpdatesTo(this)
@@ -107,15 +110,15 @@ class DeviceListAdapter (private var devicesList: ArrayList<DeviceInfo>): Recycl
             devicesList[position]
         }
 
-        deviceRow?.title?.let { holder.setText(R.id.device_card_title, it) }
+        deviceRow?.hostname?.let { holder.setText(R.id.device_card_title, it) }
         deviceRow?.owner?.let { holder.setText(R.id.device_card_owner, it) }
-        deviceRow?.statusType?.let {
+        deviceRow?.status?.let {
             holder.setText(R.id.device_card_status, getStatus(deviceRow))
             val color = getColor(it)
             holder.setColorText(R.id.device_card_status, color)
             holder.setColorImage(R.id.device_card_dot, color)
         }
-        deviceRow?.img?.let { holder.setAvatarImage(R.id.device_card_img, it) }
+        deviceRow?.avatar_url?.let { holder.setAvatarImage(R.id.device_card_img, it) }
     }
 
     /**
@@ -124,7 +127,7 @@ class DeviceListAdapter (private var devicesList: ArrayList<DeviceInfo>): Recycl
      * @return String with the current status
      */
     fun getStatus(device: DeviceInfo): String {
-        return when (device.statusType) {
+        return when (device.status) {
             StatusType.ONLINE -> "Online"
             StatusType.OFFLINE -> device.lastConnection?.let { "Ult. conx ${it}" } ?: "Not found"
         }
@@ -156,7 +159,7 @@ class DeviceListAdapter (private var devicesList: ArrayList<DeviceInfo>): Recycl
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
             val oldRow = oldRows[oldItemPosition]
             val newRow = newRows[newItemPosition]
-            return oldRow.statusType == newRow.statusType
+            return oldRow.status == newRow.status
         }
 
         override fun getOldListSize(): Int = oldRows.size

@@ -3,11 +3,15 @@ package com.telefonica.lucferbux.isecurityapp.model
 import java.io.Serializable
 
 data class UserInfo(
-    val title: String,
-    val description: String,
-    val img: String,
-    var statusType: StatusType,
-    var lastConnection: String?
+    val timestamp: Number?,
+    val name: String,
+    val email: String?,
+    val position: String?,
+    val department: String?,
+    val image_url: String?,
+    val status: StatusType?,
+    val is_deleted: Boolean?,
+    val event: Any?
 ): Serializable
 
 data class UserInfoList(
