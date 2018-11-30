@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">iSecurity</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_users">Usuarios</string>
+    <string name="title_alerts">Alertas</string>
+    <string name="title_devices">Dispositivos</string>
+    <string name="title_domains">Dominios</string>
+
+    <string name="device_card_title">Titulo</string>
+    <string name="device_card_owner">Dueño</string>
+    <string name="device_card_status">Conectado</string>
+
+</resources>

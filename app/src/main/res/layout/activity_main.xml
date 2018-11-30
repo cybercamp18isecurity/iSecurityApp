@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".controller.MainActivity">
+
+    <FrameLayout
+            android:id="@+id/navigation_fragment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="50dp"
+            app:layout_constraintBottom_toBottomOf="@+id/navigation_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
+
+    <com.luseen.spacenavigation.SpaceNavigationView
+            android:id="@+id/navigation_bar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:elevation="4dp"
+            app:active_centre_button_icon_color="#ffffff"
+            app:active_item_color="#ffffff"
+            app:centre_button_icon="@drawable/ic_navigation_dashboard"
+            app:inactive_centre_button_icon_color="#ffffff"
+            app:centre_button_color="@color/colorAccent"
+            app:inactive_item_color="#95C0EA"
+            app:layout_behavior="com.luseen.spacenavigation.SpaceNavigationViewBehavior"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:space_background_color="@color/colorPrimary"
+            app:space_item_icon_only_size="@dimen/space_item_icon_only_size"
+            app:space_item_icon_size="@dimen/space_item_icon_default_size"
+            app:space_item_text_size="@dimen/space_item_text_default_size" />
+
+</android.support.constraint.ConstraintLayout>

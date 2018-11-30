@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "835541942306",
+    "firebase_url": "https://isecurity-176d0.firebaseio.com",
+    "project_id": "isecurity-176d0",
+    "storage_bucket": "isecurity-176d0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:835541942306:android:248ec96b3251d85e",
+        "android_client_info": {
+          "package_name": "com.telefonica.lucferbux.isecurityapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "835541942306-3adials4dv3veeqlbrkj4tqv7ue5ce9e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJanW8qIa57x_Q87MKbNR-AXtZrbFg4_Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
