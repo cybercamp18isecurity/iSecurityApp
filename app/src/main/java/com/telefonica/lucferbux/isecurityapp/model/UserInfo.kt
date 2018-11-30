@@ -8,6 +8,7 @@ data class UserInfo(
     val email: String?,
     val position: String?,
     val department: String?,
+    val device: String?,
     val image_url: String?,
     val status: StatusType?,
     val is_deleted: Boolean?,

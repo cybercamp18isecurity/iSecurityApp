@@ -1,13 +1,12 @@
-package com.telefonica.lucferbux.isecurityapp.controller
+package com.telefonica.lucferbux.isecurityapp.controller.Activities
 
-import android.net.Uri
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import com.google.firebase.messaging.RemoteMessage
 import com.pusher.pushnotifications.PushNotificationReceivedListener
 import com.pusher.pushnotifications.PushNotifications
 import com.telefonica.lucferbux.isecurityapp.R
+import com.telefonica.lucferbux.isecurityapp.controller.Fragments.DevicesFragment
 import com.telefonica.lucferbux.isecurityapp.extension.createNavigation
 import com.telefonica.lucferbux.isecurityapp.extension.setNavigationLinks
 import com.telefonica.lucferbux.isecurityapp.extension.setPushNotification

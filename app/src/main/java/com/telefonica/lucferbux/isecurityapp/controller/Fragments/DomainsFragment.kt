@@ -1,7 +1,5 @@
-package com.telefonica.lucferbux.isecurityapp.controller
+package com.telefonica.lucferbux.isecurityapp.controller.Fragments
 
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -9,17 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.telefonica.lucferbux.isecurityapp.R
+import com.telefonica.lucferbux.isecurityapp.model.DomainInfoList
 
+private const val DOMAINS_PARAMS = "domainParams"
 
-private const val ALERTS_PARAM = "alertsParam"
+class DomainsFragment : Fragment() {
+    private var domains: DomainInfoList? = null
 
-class AlertsFragment : Fragment() {
-    private var param1: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ALERTS_PARAM)
+            domains = it.getSerializable(DOMAINS_PARAMS) as DomainInfoList
         }
     }
 
@@ -28,15 +27,17 @@ class AlertsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_alerts, container, false)
+        return inflater.inflate(R.layout.fragment_domains, container, false)
     }
 
+
     companion object {
+
         @JvmStatic
-        fun newInstance(alerts: String) =
-            AlertsFragment().apply {
+        fun newInstance(domains: DomainInfoList) =
+            DomainsFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ALERTS_PARAM, param1)
+                    putSerializable(DOMAINS_PARAMS, domains)
                 }
             }
     }
