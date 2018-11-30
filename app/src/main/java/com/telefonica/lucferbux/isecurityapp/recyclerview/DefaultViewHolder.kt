@@ -1,5 +1,6 @@
 package com.telefonica.lucferbux.captainamerica.recyclerview
 
+import android.net.Uri
 import android.support.annotation.IdRes
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Switch
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import org.jetbrains.anko.sdk27.coroutines.onClick
 import java.util.*
 
@@ -33,6 +35,13 @@ class DefaultViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun setColorImage(@IdRes id: Int, color: Int) {
         val view = (viewMap[id] ?: throw IllegalArgumentException("View for $id not found")) as? ImageView ?: throw IllegalArgumentException("View for $id is not a View")
         view.setColorFilter(ContextCompat.getColor(itemView.context, color))
+    }
+
+    fun setAvatarImage(@IdRes id: Int, url: String) {
+        val view = (viewMap[id] ?: throw IllegalArgumentException("View for $id not found")) as? ImageView ?: throw IllegalArgumentException("View for $id is not a View")
+        Glide.with(itemView.context)
+            .load(Uri.parse(url))
+            .into(view)
     }
 
 

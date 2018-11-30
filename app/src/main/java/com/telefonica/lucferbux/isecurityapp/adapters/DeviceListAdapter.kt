@@ -115,6 +115,7 @@ class DeviceListAdapter (private var devicesList: ArrayList<DeviceInfo>): Recycl
             holder.setColorText(R.id.device_card_status, color)
             holder.setColorImage(R.id.device_card_dot, color)
         }
+        deviceRow?.img?.let { holder.setAvatarImage(R.id.device_card_img, it) }
     }
 
     /**
