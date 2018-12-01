@@ -128,8 +128,9 @@ class DeviceListAdapter (private var devicesList: ArrayList<DeviceInfo>, val row
      */
     fun getStatus(device: DeviceInfo): String {
         return when (device.status!!) {
-            StatusType.ONLINE -> "Online"
-            StatusType.OFFLINE -> device.timestamp?.let { "Ult. conx ${it}" } ?: "Not found"
+            1-> "Online"
+            0 -> device.timestamp?.let { "Ult. conx ${it}" } ?: "Not found"
+            else -> "Online"
         }
     }
 
@@ -138,10 +139,11 @@ class DeviceListAdapter (private var devicesList: ArrayList<DeviceInfo>, val row
      * @param status to check
      * @return Id of color
      */
-    fun getColor(status: StatusType): Int {
+    fun getColor(status: Int): Int {
         return when (status) {
-            StatusType.OFFLINE -> R.color.colorOffline
-            StatusType.ONLINE -> R.color.colorGood
+            0 -> R.color.colorOffline
+            1-> R.color.colorGood
+            else -> 1
         }
     }
 

@@ -51,8 +51,8 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     fun refreshUI(summary: SummaryInfo) {
-        increaseProgresBar(summary.num_alerts.toInt(), 100)
-        devices_dasboard_cnt.text = summary.num_device.toString()
+        increaseProgresBar(summary.num_alerts!!.toInt(), 100)
+        devices_dasboard_cnt.text = summary.num_devices.toString()
         domains_dasboard_cnt.text = summary.num_domains.toString()
         users_dasboard_cnt.text = summary.num_users.toString()
     }

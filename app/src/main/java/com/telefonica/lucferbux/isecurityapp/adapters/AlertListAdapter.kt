@@ -108,7 +108,7 @@ class AlertListAdapter (private var alertsList: ArrayList<AlertInfo>, val button
             alertsList[position]
         }
 
-        alertRow.type.let { holder.setText(R.id.alert_card_title, it) }
+        alertRow.description?.let { holder.setText(R.id.alert_card_title, it) }
         alertRow.status?.let {
             holder.setText(R.id.alert_card_status, getStatus(alertRow))
             val color = getColor(it)
@@ -130,8 +130,9 @@ class AlertListAdapter (private var alertsList: ArrayList<AlertInfo>, val button
      */
     fun getStatus(alert: AlertInfo): String {
         return when (alert.status!!) {
-            AlertStatusType.ACTIVE -> "Activa"
-            AlertStatusType.RESOLVED -> "Resuelta"
+            1 -> "Activa"
+            0-> "Resuelta"
+            else -> "Activa"
         }
     }
 
@@ -154,10 +155,11 @@ class AlertListAdapter (private var alertsList: ArrayList<AlertInfo>, val button
      * @param status to check
      * @return Id of color
      */
-    fun getColor(status: AlertStatusType): Int {
+    fun getColor(status: Int): Int {
         return when (status) {
-            AlertStatusType.ACTIVE -> R.color.colorWarn
-            AlertStatusType.RESOLVED -> R.color.colorGood
+            1 -> R.color.colorWarn
+            0 -> R.color.colorGood
+            else -> R.color.colorWarn
         }
     }
 

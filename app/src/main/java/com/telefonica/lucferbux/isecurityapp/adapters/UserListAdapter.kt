@@ -129,8 +129,9 @@ class UserListAdapter (private var usersList: ArrayList<UserInfo>, val rowClick:
      */
     fun getStatus(user: UserInfo): String {
         return when (user.status!!) {
-            StatusType.ONLINE -> "Activo"
-            StatusType.OFFLINE -> user.timestamp?.let { "Ult. conx ${it}" } ?: "Not found"
+            1 -> "Activo"
+            0-> user.timestamp?.let { "Ult. conx ${it}" } ?: "Not found"
+            else -> "Activo"
         }
     }
 
@@ -139,10 +140,11 @@ class UserListAdapter (private var usersList: ArrayList<UserInfo>, val rowClick:
      * @param status to check
      * @return Id of color
      */
-    fun getColor(status: StatusType): Int {
+    fun getColor(status: Int): Int {
         return when (status) {
-            StatusType.OFFLINE -> R.color.colorOffline
-            StatusType.ONLINE -> R.color.colorGood
+            0 -> R.color.colorOffline
+            1 -> R.color.colorGood
+            else -> R.color.colorGood
         }
     }
 

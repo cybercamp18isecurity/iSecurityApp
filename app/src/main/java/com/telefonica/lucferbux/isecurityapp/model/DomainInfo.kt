@@ -3,7 +3,7 @@ package com.telefonica.lucferbux.isecurityapp.model
 import java.io.Serializable
 
 data class DomainInfo(
-    val timestamp: Number?,
+    val timestamp: String?,
     val url: String,
     val ip: String?,
     val domain: String?,

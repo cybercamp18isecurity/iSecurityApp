@@ -13,28 +13,28 @@ interface RetrieveService {
         //"Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxNjRhZjdlZi00ZDg1LTRlN2UtYjViNi0wNTA2NTNkNGI4ODUiLCJleHAiOjE1NDUyMTQ0OTgsImlhdCI6MTU0MjYyMjQ5OCwiaXNzIjoiYm90b24iLCJ1c2VyX25hbWUiOiJjaGVtYSIsInVzZXJfdXNlcm5hbWUiOiJjaGVtYSIsImFjY291bnRfYWRkciI6IjE4R3hTaHNMNkFTak45Y2Y0S1RhNHRwdXBnNjNGenNNenBMUFhpIiwidXNlcl9yb2xlIjoiYXBwIn0.cxEHrZFKcLSIieKrzHdxWk47XY_B9gJhmSGZvV7z11o"
     )*/
     @GET("/users")
-    fun retreiveUsers(): Observable<UserInfoList>
+    fun retreiveUsers(): Observable<List<UserInfo>>
 
 /*    @Headers(
         "Content-Type: application/json"
         //"Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxNjRhZjdlZi00ZDg1LTRlN2UtYjViNi0wNTA2NTNkNGI4ODUiLCJleHAiOjE1NDUyMTQ0OTgsImlhdCI6MTU0MjYyMjQ5OCwiaXNzIjoiYm90b24iLCJ1c2VyX25hbWUiOiJjaGVtYSIsInVzZXJfdXNlcm5hbWUiOiJjaGVtYSIsImFjY291bnRfYWRkciI6IjE4R3hTaHNMNkFTak45Y2Y0S1RhNHRwdXBnNjNGenNNenBMUFhpIiwidXNlcl9yb2xlIjoiYXBwIn0.cxEHrZFKcLSIieKrzHdxWk47XY_B9gJhmSGZvV7z11o"
     )*/
     @GET("/devices")
-    fun retrieveDevice(): Observable<DeviceInfoList>
+    fun retrieveDevice(): Observable<List<DeviceInfo>>
 
 /*    @Headers(
         "Content-Type: application/json"
         //"Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxNjRhZjdlZi00ZDg1LTRlN2UtYjViNi0wNTA2NTNkNGI4ODUiLCJleHAiOjE1NDUyMTQ0OTgsImlhdCI6MTU0MjYyMjQ5OCwiaXNzIjoiYm90b24iLCJ1c2VyX25hbWUiOiJjaGVtYSIsInVzZXJfdXNlcm5hbWUiOiJjaGVtYSIsImFjY291bnRfYWRkciI6IjE4R3hTaHNMNkFTak45Y2Y0S1RhNHRwdXBnNjNGenNNenBMUFhpIiwidXNlcl9yb2xlIjoiYXBwIn0.cxEHrZFKcLSIieKrzHdxWk47XY_B9gJhmSGZvV7z11o"
     )*/
     @GET("/domains")
-    fun retrieveDomains(): Observable<DomainInfoList>
+    fun retrieveDomains(): Observable<List<DomainInfo>>
 
 /*    @Headers(
         "Content-Type: application/json"
         //"Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxNjRhZjdlZi00ZDg1LTRlN2UtYjViNi0wNTA2NTNkNGI4ODUiLCJleHAiOjE1NDUyMTQ0OTgsImlhdCI6MTU0MjYyMjQ5OCwiaXNzIjoiYm90b24iLCJ1c2VyX25hbWUiOiJjaGVtYSIsInVzZXJfdXNlcm5hbWUiOiJjaGVtYSIsImFjY291bnRfYWRkciI6IjE4R3hTaHNMNkFTak45Y2Y0S1RhNHRwdXBnNjNGenNNenBMUFhpIiwidXNlcl9yb2xlIjoiYXBwIn0.cxEHrZFKcLSIieKrzHdxWk47XY_B9gJhmSGZvV7z11o"
     )*/
     @GET("/alerts")
-    fun retrieveAlerts(): Observable<AlertInfoList>
+    fun retrieveAlerts(): Observable<List<AlertInfo>>
 
 /*    @Headers(
         "Content-Type: application/json"

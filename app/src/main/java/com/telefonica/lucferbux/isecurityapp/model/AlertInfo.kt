@@ -3,16 +3,15 @@ package com.telefonica.lucferbux.isecurityapp.model
 import java.io.Serializable
 
 data class AlertInfo(
-    val date: Number?,
+    val _id: String?,
     val id_external: String?, //hostname
     val id_user: String?,
-    val _id: String?,
-    val type: String,
-    val status: AlertStatusType?,
-    val criticity: Number?,
-    val description: String?,
-    val events: Any?,
-    val is_deleted: Boolean?
+    val type: String?,
+    val status: Int?,
+    val date: Int?,
+    val criticity: Int?,
+    val description: String?
+
 ): Serializable
 
 data class AlertInfoList(

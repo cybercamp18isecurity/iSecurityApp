@@ -22,11 +22,11 @@ class SplashActivity : AppCompatActivity() {
 
         ))
         val DOMAIN_TEST: DomainInfoList = DomainInfoList(listOf(
-            DomainInfo(1543627979, "https://pigram.luca-d3.com", "17.34.34.56", "Pigram",
+            DomainInfo("15/5 20:23", "https://pigram.luca-d3.com", "17.34.34.56", "Pigram",
                 "Pigram es un servicio que permite conectarse a la red a través de tecnología GSM, está pensado en situaciones de emergencia",
                 "ElevenPaths", "https://firebasestorage.googleapis.com/v0/b/isecurity-176d0.appspot.com/o/Pigram.png?alt=media&token=b06e8d95-7e82-4c6e-a5b0-173612f9c88b",
                 "", StatusType.ONLINE, false, "", "", ""),
-            DomainInfo(1543637979, "https://cardreader.e-paths.com", "17.20.10.56", "Card Reader",
+            DomainInfo("17/12 20:30", "https://cardreader.e-paths.com", "17.20.10.56", "Card Reader",
                 "Card Reader es una aplicación que extrae toda la información posible de una tarjeta de contacto",
                 "Ideas Locas", "https://firebasestorage.googleapis.com/v0/b/isecurity-176d0.appspot.com/o/CardReader.png?alt=media&token=ea989413-42ae-4b15-946e-e67ee8af91a1",
                 "", StatusType.OFFLINE, false, "", "", "")
@@ -83,22 +83,24 @@ class SplashActivity : AppCompatActivity() {
                 summaryInfo = response
                 return@flatMap retriever.service.retrieveAlerts() }
             .flatMap { response ->
-                alertList = response
+                alertList = AlertInfoList(response)
                 return@flatMap  retriever.service.retrieveDevice()
             }
             .flatMap { response ->
-                deviceList = response
+                deviceList = DeviceInfoList(response)
                 return@flatMap retriever.service.retreiveUsers()
             }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe (
-                { response: UserInfoList ->
-                    usersList = response
+                { response: List<UserInfo> ->
+                    usersList = UserInfoList(response)
                     startApp()
                 },
                 { err -> Log.v("call_log", err.localizedMessage) }
             )
+
+
     }
 
 
