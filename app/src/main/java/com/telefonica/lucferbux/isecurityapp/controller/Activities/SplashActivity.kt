@@ -22,8 +22,16 @@ class SplashActivity : AppCompatActivity() {
 
         ))
         val DOMAIN_TEST: DomainInfoList = DomainInfoList(listOf(
-
+            DomainInfo(1543627979, "https://pigram.luca-d3.com", "17.34.34.56", "Pigram",
+                "Pigram es un servicio que permite conectarse a la red a través de tecnología GSM, está pensado en situaciones de emergencia",
+                "ElevenPaths", "https://firebasestorage.googleapis.com/v0/b/isecurity-176d0.appspot.com/o/Pigram.png?alt=media&token=b06e8d95-7e82-4c6e-a5b0-173612f9c88b",
+                "", StatusType.ONLINE, false, "", "", ""),
+            DomainInfo(1543637979, "https://cardreader.e-paths.com", "17.20.10.56", "Card Reader",
+                "Card Reader es una aplicación que extrae toda la información posible de una tarjeta de contacto",
+                "Ideas Locas", "https://firebasestorage.googleapis.com/v0/b/isecurity-176d0.appspot.com/o/CardReader.png?alt=media&token=ea989413-42ae-4b15-946e-e67ee8af91a1",
+                "", StatusType.OFFLINE, false, "", "", "")
         ))
+
         val ALERT_TEST: AlertInfoList = AlertInfoList(listOf(
 
         ))
@@ -41,15 +49,17 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        //loadData()
-        requestData()
+        waitAndDo(100){
+            loadData()
+            requestData()
+        }
     }
 
     fun loadData() {
-        deviceList = DEVICES_TEST
-        usersList = USERS_TEST
+        //deviceList = DEVICES_TEST
+        //usersList = USERS_TEST
         domainList = DOMAIN_TEST
-        alertList = ALERT_TEST
+        //alertList = ALERT_TEST
         //summaryInfo = SUMMARY_INFO
     }
 
@@ -70,25 +80,21 @@ class SplashActivity : AppCompatActivity() {
         val userRequest = retriever.service.retrieveSummary()
         userRequest
             .flatMap { response ->
-                summaryInfo = response as SummaryInfo
+                summaryInfo = response
                 return@flatMap retriever.service.retrieveAlerts() }
             .flatMap { response ->
-                alertList = response as AlertInfoList
+                alertList = response
                 return@flatMap  retriever.service.retrieveDevice()
             }
             .flatMap { response ->
-                deviceList = response as DeviceInfoList
+                deviceList = response
                 return@flatMap retriever.service.retreiveUsers()
-            }
-            .flatMap { response ->
-                usersList = response as UserInfoList
-                return@flatMap retriever.service.retrieveDomains()
             }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe (
-                { response: DomainInfoList ->
-                    domainList = response
+                { response: UserInfoList ->
+                    usersList = response
                     startApp()
                 },
                 { err -> Log.v("call_log", err.localizedMessage) }

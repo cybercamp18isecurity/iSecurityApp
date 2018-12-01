@@ -3,6 +3,7 @@ package com.telefonica.lucferbux.isecurityapp.model
 import java.io.Serializable
 
 data class UserInfo(
+    val _id: String?,
     val timestamp: Number?,
     val name: String,
     val email: String?,
