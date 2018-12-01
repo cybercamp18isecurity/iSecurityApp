@@ -17,4 +17,18 @@
     <string name="user_card_job">Puesto</string>
     <string name="user_card_department">Departamento</string>
 
+    <string name="alert_card_title">Titulo</string>
+    <string name="alert_card_status">Activo</string>
+    <string name="alert_card_description">Descripción alertas</string>
+    <string name="alert_card_button">Resolver</string>
+    <string name="alert_card_type">ALERTA</string>
+
+
+    <string name="alert_notification_title">Resolver Alerta</string>
+    <string name="alert_notification_description">Está a punto de resolver una alerta notificada por el sistema. En el momento en el que acepte, el sistema marcará la alerta como resuelta y no podrá volver a cambiar el estado</string>
+    <string name="alert_notification_btn1">Resolver</string>
+    <string name="alert_notification_btn2">Cancelar</string>
+
+
+
 </resources>
