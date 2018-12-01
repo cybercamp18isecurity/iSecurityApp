@@ -35,17 +35,17 @@ fun MainActivity.setNavigationLinks(navigationBar: SpaceNavigationView, context:
             val fragment: Fragment = when (itemIndex) {
                 0 -> {
                     fragmentStatus = NavigationFragment.DEVICES
-                    DevicesFragment.newInstance(deviceList!!)
+                    DevicesFragment.newInstance(deviceList!!, alertList!!)
                 }
 
                 1 -> {
                     fragmentStatus = NavigationFragment.USERS
-                    UsersFragment.newInstance(usersList!!)
+                    UsersFragment.newInstance(usersList!!, alertList!!)
                 }
 
                 2 -> {
                     fragmentStatus = NavigationFragment.DOMAINS
-                    DomainsFragment.newInstance(domainList!!)
+                    DomainsFragment.newInstance(domainList!!, alertList!!)
                 }
 
                 3 -> {
@@ -55,7 +55,7 @@ fun MainActivity.setNavigationLinks(navigationBar: SpaceNavigationView, context:
 
                 else -> {
                     fragmentStatus = NavigationFragment.DEVICES
-                    DevicesFragment.newInstance(deviceList!!)
+                    DevicesFragment.newInstance(deviceList!!, alertList!!)
                 }
             }
 

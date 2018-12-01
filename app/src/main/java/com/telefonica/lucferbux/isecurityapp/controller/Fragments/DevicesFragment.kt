@@ -10,7 +10,9 @@ import android.view.ViewGroup
 import com.telefonica.lucferbux.isecurityapp.R
 import com.telefonica.lucferbux.isecurityapp.adapters.DeviceListAdapter
 import com.telefonica.lucferbux.isecurityapp.controller.Activities.DeviceDetailActivity
+import com.telefonica.lucferbux.isecurityapp.extension.ALERT_DETAIL
 import com.telefonica.lucferbux.isecurityapp.extension.DEVICE_DETAIL
+import com.telefonica.lucferbux.isecurityapp.model.AlertInfoList
 import com.telefonica.lucferbux.isecurityapp.model.DeviceInfo
 import com.telefonica.lucferbux.isecurityapp.model.DeviceInfoList
 import kotlinx.android.synthetic.main.fragment_devices.*
@@ -18,17 +20,20 @@ import org.jetbrains.anko.support.v4.startActivity
 
 
 private const val DEVICES_PARAM = "devicesParams"
+private const val ALERTS_PARAM = "alertsParams"
 
 class DevicesFragment : Fragment() {
-    public var devices: DeviceInfoList? = null
+    var devices: DeviceInfoList? = null
+    var alerts: AlertInfoList? = null
     var devicesSorted: ArrayList<DeviceInfo>? = null
 
     companion object {
         @JvmStatic
-        fun newInstance(devices: DeviceInfoList) =
+        fun newInstance(devices: DeviceInfoList, alerts: AlertInfoList) =
             DevicesFragment().apply {
                 arguments = Bundle().apply {
                     putSerializable(DEVICES_PARAM, devices)
+                    putSerializable(ALERTS_PARAM, alerts)
                 }
             }
     }
@@ -37,6 +42,7 @@ class DevicesFragment : Fragment() {
         super.onCreate(savedInstanceState)
         arguments?.let {
             devices = it.getSerializable(DEVICES_PARAM) as DeviceInfoList
+            alerts = it.getSerializable(ALERTS_PARAM) as AlertInfoList
         }
     }
 
@@ -59,8 +65,10 @@ class DevicesFragment : Fragment() {
         val sortedDevice = devicesSorted
         val adapter = DeviceListAdapter(sortedDevice!!) {
             val device = devicesSorted!!.get(it)
+            // TODO: hay que filtrar las alerts
             startActivity<DeviceDetailActivity>(
-                DEVICE_DETAIL to device
+                DEVICE_DETAIL to device,
+                ALERT_DETAIL to alerts
             )
         }
 

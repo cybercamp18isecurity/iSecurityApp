@@ -12,19 +12,18 @@ import com.telefonica.lucferbux.isecurityapp.R
 import com.telefonica.lucferbux.isecurityapp.adapters.AlertListAdapter
 import com.telefonica.lucferbux.isecurityapp.extension.ALERT_DETAIL
 import com.telefonica.lucferbux.isecurityapp.extension.ALERT_RESOLVE
-import com.telefonica.lucferbux.isecurityapp.extension.USER_DETAIL
+import com.telefonica.lucferbux.isecurityapp.extension.DOMAIN_DETAIL
 import com.telefonica.lucferbux.isecurityapp.model.AlertInfo
 import com.telefonica.lucferbux.isecurityapp.model.AlertInfoList
-import com.telefonica.lucferbux.isecurityapp.model.UserInfo
-
-import kotlinx.android.synthetic.main.activity_user_detail.*
+import com.telefonica.lucferbux.isecurityapp.model.DomainInfo
+import kotlinx.android.synthetic.main.activity_domain_detail.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.startActivityForResult
 
-class UserDetailActivity : AppCompatActivity() {
+class DomainDetailActivity : AppCompatActivity() {
 
-    private val user: UserInfo by lazy {
-        intent.getSerializableExtra(USER_DETAIL) as UserInfo
+    private val domain: DomainInfo by lazy {
+        intent.getSerializableExtra(DOMAIN_DETAIL) as DomainInfo
     }
 
     private val alerts: AlertInfoList by lazy {
@@ -36,9 +35,9 @@ class UserDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_user_detail)
+        setContentView(R.layout.activity_domain_detail)
 
-        user_detail_adapter.layoutManager = LinearLayoutManager(this)
+        domain_detail_adapter.layoutManager = LinearLayoutManager(this)
 
         refreshUI()
 
@@ -46,7 +45,7 @@ class UserDetailActivity : AppCompatActivity() {
             closeActivity()
         }
 
-        setuserInfo(user)
+        setDomainInfo(domain)
     }
 
     fun sortAlerts(alertsList: AlertInfoList): ArrayList<AlertInfo> {
@@ -62,7 +61,7 @@ class UserDetailActivity : AppCompatActivity() {
             startActivityForResult<AlertResolveActivity>(ALERT_RESOLVE)
         }
 
-        user_detail_adapter.adapter = adapter
+        domain_detail_adapter.adapter = adapter
     }
 
 
@@ -73,13 +72,13 @@ class UserDetailActivity : AppCompatActivity() {
         return super.onKeyDown(keyCode, event)
     }
 
-    fun setuserInfo(user: UserInfo) {
-        user_title.text = user.name
-        user_device.text = user.device
+    fun setDomainInfo(domain: DomainInfo) {
+        domain_title.text = domain.domain
+        domain_url.text = domain.url
         Glide.with(this)
-            .load(Uri.parse(user.image_url))
+            .load(Uri.parse(domain.img_url))
             .apply(RequestOptions.circleCropTransform())
-            .into(user_avatar)
+            .into(domain_avatar)
     }
 
     fun closeActivity() {
