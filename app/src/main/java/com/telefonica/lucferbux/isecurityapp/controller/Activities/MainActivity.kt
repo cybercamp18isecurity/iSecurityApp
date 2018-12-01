@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     var fragmentStatus: NavigationFragment? = null
-
     var deviceList: DeviceInfoList? = null
     var usersList: UserInfoList? = null
     var domainList: DomainInfoList? = null
