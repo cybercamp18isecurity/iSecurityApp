@@ -13,6 +13,7 @@ import com.telefonica.lucferbux.isecurityapp.controller.Fragments.DevicesFragmen
 import com.telefonica.lucferbux.isecurityapp.controller.Fragments.DomainsFragment
 import com.telefonica.lucferbux.isecurityapp.controller.Fragments.UsersFragment
 import com.telefonica.lucferbux.isecurityapp.model.NavigationFragment
+import com.telefonica.lucferbux.isecurityapp.model.SummaryInfo
 import org.jetbrains.anko.startActivity
 
 
@@ -63,7 +64,11 @@ fun MainActivity.setNavigationLinks(navigationBar: SpaceNavigationView, context:
         }
 
         override fun onCentreButtonClick() {
-                startActivity<DashboardActivity>()
+
+
+                startActivity<DashboardActivity>(
+                    SUMMARY_DETAIL to summaryInfo
+                )
         }
     })
 }

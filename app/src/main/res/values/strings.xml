@@ -40,4 +40,11 @@
     <string name="domain_card_department">DOMINIO</string>
 
 
+    <string name="dashboard_users">Usuarios conectados:</string>
+    <string name="dashboard_alerts">alertas</string>
+    <string name="dashboard_devices">Dispositivos conectados:</string>
+    <string name="dashboard_domain">Dominios activos:</string>
+    <string name="dashboard_cnt">0</string>
+
+
 </resources>
