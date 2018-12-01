@@ -4,6 +4,7 @@ import java.io.Serializable
 
 data class DeviceInfo(
     val timestamp: Number?,
+    val _id: String?,
     val hostname: String,
     val owner: String?,
     val avatar_url: String?,

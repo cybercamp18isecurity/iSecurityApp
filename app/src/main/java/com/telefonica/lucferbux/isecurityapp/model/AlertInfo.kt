@@ -4,8 +4,9 @@ import java.io.Serializable
 
 data class AlertInfo(
     val date: Number?,
-    val id_external: String?,
+    val id_external: String?, //hostname
     val id_user: String?,
+    val _id: String?,
     val type: String,
     val status: AlertStatusType?,
     val criticity: Number?,

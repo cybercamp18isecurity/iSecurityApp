@@ -109,7 +109,6 @@ class AlertListAdapter (private var alertsList: ArrayList<AlertInfo>, val button
         }
 
         alertRow.type.let { holder.setText(R.id.alert_card_title, it) }
-        alertRow.description?.let { holder.setText(R.id.alert_card_description, it) }
         alertRow.status?.let {
             holder.setText(R.id.alert_card_status, getStatus(alertRow))
             val color = getColor(it)
