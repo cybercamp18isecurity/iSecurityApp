@@ -3,11 +3,13 @@ package com.telefonica.lucferbux.isecurityapp.model
 import java.io.Serializable
 
 data class DeviceInfo(
-    val title: String,
-    val owner: String,
-    val img: String,
-    var statusType: StatusType,
-    var lastConnection: String?
+    val timestamp: Number?,
+    val hostname: String,
+    val owner: String?,
+    val avatar_url: String?,
+    val type: String?,
+    val is_deleted: Boolean?,
+    var status: StatusType?
 ): Serializable
 
 data class DeviceInfoList(

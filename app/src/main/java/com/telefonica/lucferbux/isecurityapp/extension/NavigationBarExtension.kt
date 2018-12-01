@@ -1,16 +1,18 @@
 package com.telefonica.lucferbux.isecurityapp.extension
 
-import android.app.Activity
 import android.content.Context
 import android.support.v4.app.Fragment
 import com.luseen.spacenavigation.SpaceItem
 import com.luseen.spacenavigation.SpaceNavigationView
 import com.luseen.spacenavigation.SpaceOnClickListener
 import com.telefonica.lucferbux.isecurityapp.R
-import com.telefonica.lucferbux.isecurityapp.controller.*
-import com.telefonica.lucferbux.isecurityapp.controller.MainActivity.Companion.DEVICES_TEST
-import com.telefonica.lucferbux.isecurityapp.controller.MainActivity.Companion.DOMAIN_TEST
-import com.telefonica.lucferbux.isecurityapp.controller.MainActivity.Companion.USERS_TEST
+import com.telefonica.lucferbux.isecurityapp.controller.Activities.DashboardActivity
+import com.telefonica.lucferbux.isecurityapp.controller.Activities.MainActivity
+import com.telefonica.lucferbux.isecurityapp.controller.Fragments.AlertsFragment
+import com.telefonica.lucferbux.isecurityapp.controller.Fragments.DevicesFragment
+import com.telefonica.lucferbux.isecurityapp.controller.Fragments.DomainsFragment
+import com.telefonica.lucferbux.isecurityapp.controller.Fragments.UsersFragment
+import com.telefonica.lucferbux.isecurityapp.model.NavigationFragment
 import org.jetbrains.anko.startActivity
 
 
@@ -32,23 +34,28 @@ fun MainActivity.setNavigationLinks(navigationBar: SpaceNavigationView, context:
         override fun onItemClick(itemIndex: Int, itemName: String?) {
             val fragment: Fragment = when (itemIndex) {
                 0 -> {
-                    DevicesFragment.newInstance(DEVICES_TEST)
+                    fragmentStatus = NavigationFragment.DEVICES
+                    DevicesFragment.newInstance(deviceList!!)
                 }
 
                 1 -> {
-                    UsersFragment.newInstance(USERS_TEST)
+                    fragmentStatus = NavigationFragment.USERS
+                    UsersFragment.newInstance(usersList!!)
                 }
 
                 2 -> {
-                    DomainsFragment.newInstance(DOMAIN_TEST)
+                    fragmentStatus = NavigationFragment.DOMAINS
+                    DomainsFragment.newInstance(domainList!!)
                 }
 
                 3 -> {
-                    AlertsFragment.newInstance("alerts")
+                    fragmentStatus = NavigationFragment.ALERTS
+                    AlertsFragment.newInstance(alertList!!)
                 }
 
                 else -> {
-                    DevicesFragment.newInstance(DEVICES_TEST)
+                    fragmentStatus = NavigationFragment.DEVICES
+                    DevicesFragment.newInstance(deviceList!!)
                 }
             }
 
