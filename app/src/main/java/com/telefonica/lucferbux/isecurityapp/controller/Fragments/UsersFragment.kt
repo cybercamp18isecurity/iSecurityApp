@@ -10,18 +10,22 @@ import android.view.ViewGroup
 import com.telefonica.lucferbux.isecurityapp.R
 import com.telefonica.lucferbux.isecurityapp.adapters.UserListAdapter
 import com.telefonica.lucferbux.isecurityapp.controller.Activities.UserDetailActivity
+import com.telefonica.lucferbux.isecurityapp.extension.ALERT_DETAIL
 import com.telefonica.lucferbux.isecurityapp.extension.USER_DETAIL
+import com.telefonica.lucferbux.isecurityapp.model.AlertInfoList
 import com.telefonica.lucferbux.isecurityapp.model.UserInfo
 import com.telefonica.lucferbux.isecurityapp.model.UserInfoList
 import kotlinx.android.synthetic.main.fragment_users.*
 import org.jetbrains.anko.support.v4.startActivity
 
 private const val USERS_PARAM = "userParams"
+private const val ALERTS_PARAM = "alertsParams"
 
 
 
 class UsersFragment : Fragment() {
     private var users: UserInfoList? = null
+    var alerts: AlertInfoList? = null
     var usersSorted: ArrayList<UserInfo>? = null
 
 
@@ -29,15 +33,17 @@ class UsersFragment : Fragment() {
         super.onCreate(savedInstanceState)
         arguments?.let {
             users = it.getSerializable(USERS_PARAM) as UserInfoList
+            alerts = it.getSerializable(ALERTS_PARAM) as AlertInfoList
         }
     }
 
     companion object {
         @JvmStatic
-        fun newInstance(users: UserInfoList) =
+        fun newInstance(users: UserInfoList, alerts: AlertInfoList) =
             UsersFragment().apply {
                 arguments = Bundle().apply {
                     putSerializable(USERS_PARAM, users)
+                    putSerializable(ALERTS_PARAM, alerts)
                 }
             }
     }
@@ -66,7 +72,8 @@ class UsersFragment : Fragment() {
         val adapter = UserListAdapter(sorteduser!!) {
             val user = usersSorted!!.get(it)
             startActivity<UserDetailActivity>(
-                USER_DETAIL to user
+                USER_DETAIL to user,
+                ALERT_DETAIL to alerts
             )
         }
 

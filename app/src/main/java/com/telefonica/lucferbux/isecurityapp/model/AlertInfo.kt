@@ -1,5 +1,7 @@
 package com.telefonica.lucferbux.isecurityapp.model
 
+import java.io.Serializable
+
 data class AlertInfo(
     val date: Number?,
     val id_external: String?,
@@ -9,9 +11,9 @@ data class AlertInfo(
     val criticity: Number?,
     val description: String?,
     val events: Any?,
-    val is_deleted: String?
-)
+    val is_deleted: Boolean?
+): Serializable
 
 data class AlertInfoList(
     var alerts: List<AlertInfo>
-)
+): Serializable

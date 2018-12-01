@@ -27,9 +27,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="PrimaryColor" parent="ThemeOverlay.AppCompat.Light">
-        <item name="colorAccent">@color/colorPrimary</item>
-    </style>
+
 
     <style name="CustomPopUpAnimation" parent="@android:style/Animation.Translucent">
         <item name="@android:windowEnterAnimation">@anim/fade_in</item>

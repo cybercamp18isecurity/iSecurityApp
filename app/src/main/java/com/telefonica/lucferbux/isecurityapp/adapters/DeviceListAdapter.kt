@@ -29,7 +29,7 @@ class DeviceListAdapter (private var devicesList: ArrayList<DeviceInfo>, val row
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DefaultViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         return DefaultViewHolder(layoutInflater.inflate(R.layout.card_device, parent, false)).listen {
-            pos, type ->
+            pos, _ ->
                 rowClick(pos)
         }
     }
@@ -110,15 +110,15 @@ class DeviceListAdapter (private var devicesList: ArrayList<DeviceInfo>, val row
             devicesList[position]
         }
 
-        deviceRow?.hostname?.let { holder.setText(R.id.device_card_title, it) }
-        deviceRow?.owner?.let { holder.setText(R.id.device_card_owner, it) }
-        deviceRow?.status?.let {
+        deviceRow.hostname.let { holder.setText(R.id.device_card_title, it) }
+        deviceRow.owner?.let { holder.setText(R.id.device_card_owner, it) }
+        deviceRow.status?.let {
             holder.setText(R.id.device_card_status, getStatus(deviceRow))
             val color = getColor(it)
             holder.setColorText(R.id.device_card_status, color)
             holder.setColorImage(R.id.device_card_dot, color)
         }
-        deviceRow?.avatar_url?.let { holder.setAvatarImage(R.id.device_card_img, it) }
+        deviceRow.avatar_url?.let { holder.setAvatarImage(R.id.device_card_img, it) }
     }
 
     /**

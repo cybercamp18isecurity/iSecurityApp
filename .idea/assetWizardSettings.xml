@@ -19,11 +19,11 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="height" value="72" />
-                            <entry key="outputName" value="ic_launcher_foreground" />
+                            <entry key="height" value="80" />
+                            <entry key="outputName" value="ic_alert_notification_high" />
                             <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="$PROJECT_DIR$/../../Recursos/androidIcons/ic_launcher_foreground.svg" />
-                            <entry key="width" value="72" />
+                            <entry key="sourceFile" value="$PROJECT_DIR$/../../Recursos/androidIcons/ic_alert_notification_high.svg" />
+                            <entry key="width" value="80" />
                           </map>
                         </option>
                       </PersistentState>

@@ -6,28 +6,38 @@ import com.google.firebase.messaging.RemoteMessage
 import com.pusher.pushnotifications.PushNotificationReceivedListener
 import com.pusher.pushnotifications.PushNotifications
 import com.telefonica.lucferbux.isecurityapp.R
+import com.telefonica.lucferbux.isecurityapp.controller.Activities.SplashActivity.Companion.ALERT_TEST
+import com.telefonica.lucferbux.isecurityapp.controller.Activities.SplashActivity.Companion.DEVICES_TEST
+import com.telefonica.lucferbux.isecurityapp.controller.Activities.SplashActivity.Companion.DOMAIN_TEST
+import com.telefonica.lucferbux.isecurityapp.controller.Activities.SplashActivity.Companion.USERS_TEST
 import com.telefonica.lucferbux.isecurityapp.controller.Fragments.DevicesFragment
-import com.telefonica.lucferbux.isecurityapp.extension.createNavigation
-import com.telefonica.lucferbux.isecurityapp.extension.setNavigationLinks
-import com.telefonica.lucferbux.isecurityapp.extension.setPushNotification
-import com.telefonica.lucferbux.isecurityapp.extension.toast
+import com.telefonica.lucferbux.isecurityapp.extension.*
 import com.telefonica.lucferbux.isecurityapp.model.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    companion object {
-        //mockup for fragments
-        val DEVICES_TEST: DeviceInfoList = DeviceInfoList(listOf())
-        val USERS_TEST: UserInfoList = UserInfoList(listOf())
-        val DOMAIN_TEST: DomainInfoList = DomainInfoList(listOf())
-    }
-
     var fragmentStatus: NavigationFragment? = null
 
-    var deviceList: DeviceInfoList? = null
-    var usersList: UserInfoList? = null
-    var domainList: DomainInfoList? = null
+    val deviceList: DeviceInfoList by lazy {
+        intent.getSerializableExtra(DEVICE_DETAIL) as DeviceInfoList
+    }
+
+    val usersList: UserInfoList by lazy {
+        intent.getSerializableExtra(USER_DETAIL) as UserInfoList
+    }
+
+    val domainList: DomainInfoList by lazy {
+        intent.getSerializableExtra(DOMAIN_DETAIL) as DomainInfoList
+    }
+
+    val alertList: AlertInfoList by lazy {
+        intent.getSerializableExtra(ALERT_DETAIL) as AlertInfoList
+    }
+
+    val summaryInfo: SummaryInfo by lazy {
+        intent.getSerializableExtra(SUMMARY_DETAIL) as SummaryInfo
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,10 +45,9 @@ class MainActivity : AppCompatActivity() {
         createNavigation(navigation_bar)
         setNavigationLinks(navigation_bar, this)
         setPushNotification()
-        loadData()
         if(savedInstanceState == null) {
             fragmentStatus = NavigationFragment.DEVICES
-            val devicesFragment = DevicesFragment.newInstance(deviceList!!)
+            val devicesFragment = DevicesFragment.newInstance(deviceList!!, alertList!!)
             supportFragmentManager.beginTransaction().add(R.id.navigation_fragment, devicesFragment).commit()
         }
     }
@@ -55,11 +64,7 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    fun loadData() {
-        deviceList = DEVICES_TEST
-        usersList = USERS_TEST
-        domainList = DOMAIN_TEST
-    }
+
 
     fun updateNotification() {
         when(fragmentStatus)  {
