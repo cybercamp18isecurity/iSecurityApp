@@ -13,6 +13,7 @@ import com.telefonica.lucferbux.isecurityapp.controller.Fragments.DevicesFragmen
 import com.telefonica.lucferbux.isecurityapp.controller.Fragments.DomainsFragment
 import com.telefonica.lucferbux.isecurityapp.controller.Fragments.UsersFragment
 import com.telefonica.lucferbux.isecurityapp.model.NavigationFragment
+import com.telefonica.lucferbux.isecurityapp.model.SummaryInfo
 import org.jetbrains.anko.startActivity
 
 
@@ -35,17 +36,17 @@ fun MainActivity.setNavigationLinks(navigationBar: SpaceNavigationView, context:
             val fragment: Fragment = when (itemIndex) {
                 0 -> {
                     fragmentStatus = NavigationFragment.DEVICES
-                    DevicesFragment.newInstance(deviceList!!)
+                    DevicesFragment.newInstance(deviceList!!, alertList!!)
                 }
 
                 1 -> {
                     fragmentStatus = NavigationFragment.USERS
-                    UsersFragment.newInstance(usersList!!)
+                    UsersFragment.newInstance(usersList!!, alertList!!)
                 }
 
                 2 -> {
                     fragmentStatus = NavigationFragment.DOMAINS
-                    DomainsFragment.newInstance(domainList!!)
+                    DomainsFragment.newInstance(domainList!!, alertList!!)
                 }
 
                 3 -> {
@@ -55,7 +56,7 @@ fun MainActivity.setNavigationLinks(navigationBar: SpaceNavigationView, context:
 
                 else -> {
                     fragmentStatus = NavigationFragment.DEVICES
-                    DevicesFragment.newInstance(deviceList!!)
+                    DevicesFragment.newInstance(deviceList!!, alertList!!)
                 }
             }
 
@@ -63,7 +64,11 @@ fun MainActivity.setNavigationLinks(navigationBar: SpaceNavigationView, context:
         }
 
         override fun onCentreButtonClick() {
-                startActivity<DashboardActivity>()
+
+
+                startActivity<DashboardActivity>(
+                    SUMMARY_DETAIL to summaryInfo
+                )
         }
     })
 }

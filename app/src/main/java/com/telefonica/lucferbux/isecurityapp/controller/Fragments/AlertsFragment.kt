@@ -15,6 +15,7 @@ import com.telefonica.lucferbux.isecurityapp.controller.Activities.AlertResolveA
 import com.telefonica.lucferbux.isecurityapp.extension.ALERT_RESOLVE
 import com.telefonica.lucferbux.isecurityapp.model.AlertInfo
 import com.telefonica.lucferbux.isecurityapp.model.AlertInfoList
+import com.telefonica.lucferbux.isecurityapp.model.AlertStatusType
 import kotlinx.android.synthetic.main.fragment_alerts.*
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.startActivityForResult
@@ -24,7 +25,7 @@ import org.jetbrains.anko.support.v4.toast
 private const val ALERTS_PARAM = "alertsParams"
 
 class AlertsFragment : Fragment() {
-    public var alerts: AlertInfoList? = null
+    var alerts: AlertInfoList? = null
     var alertsSorted: ArrayList<AlertInfo>? = null
     var alertSelected: Int? = null
 
@@ -74,9 +75,10 @@ class AlertsFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == ALERT_RESOLVE && resultCode == Activity.RESULT_OK) {
-            alertSelected.let {
+            alertSelected?.let {
                 toast("Aceptado CAMBIAR ${alertSelected}")
             }
+
 
         } else {
             alertSelected.let {

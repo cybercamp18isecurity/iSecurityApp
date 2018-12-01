@@ -44,9 +44,14 @@
                 android:screenOrientation="portrait"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".controller.Activities.AlertResolveActivity"
+        <activity
+                android:name=".controller.Activities.AlertResolveActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppTheme.Translucent">
+        </activity>
+        <activity android:name=".controller.Activities.DomainDetailActivity"
                   android:screenOrientation="portrait"
-                  android:theme="@style/AppTheme.Translucent">
+                  android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 
