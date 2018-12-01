@@ -50,7 +50,7 @@ fun MainActivity.setNavigationLinks(navigationBar: SpaceNavigationView, context:
 
                 3 -> {
                     fragmentStatus = NavigationFragment.ALERTS
-                    AlertsFragment.newInstance("alerts")
+                    AlertsFragment.newInstance(alertList!!)
                 }
 
                 else -> {

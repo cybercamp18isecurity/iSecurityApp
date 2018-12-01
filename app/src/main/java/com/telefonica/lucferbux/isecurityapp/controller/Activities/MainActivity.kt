@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         val DEVICES_TEST: DeviceInfoList = DeviceInfoList(listOf())
         val USERS_TEST: UserInfoList = UserInfoList(listOf())
         val DOMAIN_TEST: DomainInfoList = DomainInfoList(listOf())
+        val ALERT_TEST: AlertInfoList = AlertInfoList(listOf())
     }
 
     var fragmentStatus: NavigationFragment? = null
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     var deviceList: DeviceInfoList? = null
     var usersList: UserInfoList? = null
     var domainList: DomainInfoList? = null
+    var alertList: AlertInfoList? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +61,7 @@ class MainActivity : AppCompatActivity() {
         deviceList = DEVICES_TEST
         usersList = USERS_TEST
         domainList = DOMAIN_TEST
+        alertList = ALERT_TEST
     }
 
     fun updateNotification() {
